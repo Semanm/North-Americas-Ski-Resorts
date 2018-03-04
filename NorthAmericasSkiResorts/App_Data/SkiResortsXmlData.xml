@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SkiResorts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SkiResort>
+    <Id>1</Id>
+    <Name>Telluride</Name>
+    <Address>565 Mountain Village Blvd.</Address>
+    <City>Telluride</City>
+    <State>CO</State>
+    <Zip>81435</Zip>
+    <Phone>(970) 728-7301</Phone>
+    <URL>TellurideSkiResort.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>2</Id>
+    <Name>Squaw Valley</Name>
+    <Address>1960 Squaw Valley Rd. </Address>
+    <City>Lake Tahoe</City>
+    <State>CA</State>
+    <Zip>96146</Zip>
+    <Phone>(800) 403-0206</Phone>
+    <URL>squawalpine.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>3</Id>
+    <Name>Sun Valley Resort</Name>
+    <Address>1 Sun Valley Rd.</Address>
+    <City>Sun Valley</City>
+    <State>ID</State>
+    <Zip>83353</Zip>
+    <Phone>(888) 490-5950</Phone>
+    <URL>www.sunvalley.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>4</Id>
+    <Name>Park City Mountain</Name>
+    <Address>1345 Lowell Ave.</Address>
+    <City>Park City</City>
+    <State>UT</State>
+    <Zip>84060</Zip>
+    <Phone>(435) 649-8111</Phone>
+    <URL>www.parkcitymountain.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>5</Id>
+    <Name>Snowmass</Name>
+    <Address>120 Carriage Way</Address>
+    <City>Aspen</City>
+    <State>CO</State>
+    <Zip>81615</Zip>
+    <Phone>800-525-6200</Phone>
+    <URL>www.aspensnowmass.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>6</Id>
+    <Name>Whistler Blackcomb</Name>
+    <Address>4545 Blackcomb Way</Address>
+    <City>Whistler</City>
+    <State>BC</State>
+    <Zip>V0N 1B4</Zip>
+    <Phone>604-967-8950</Phone>
+    <URL>www.whistler.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>8</Id>
+    <Name>Alta</Name>
+    <Address>210 Little Cottonwood Canyon</Address>
+    <City>Alta</City>
+    <State>UT</State>
+    <Zip>84092</Zip>
+    <Phone>801-359-1078</Phone>
+    <URL>www.alta.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>9</Id>
+    <Name>Taos Ski Valley</Name>
+    <Address>116 Sutton Place</Address>
+    <City>Taos</City>
+    <State>NM</State>
+    <Zip>87525</Zip>
+    <Phone>800.776.1111</Phone>
+    <URL>www.skitaos.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>11</Id>
+    <Name>Sun Peaks</Name>
+    <Address>1280 Alpine Road</Address>
+    <City>Sun Peaks</City>
+    <State>BC</State>
+    <Zip>V0E 5N0</Zip>
+    <Phone>250-578-5474</Phone>
+    <URL>www.sunpeaksresort.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>12</Id>
+    <Name>Bald Mountain</Name>
+    <Address>PO Box 49, Pierce</Address>
+    <City>Sun Valley</City>
+    <State>ID</State>
+    <Zip>83546</Zip>
+    <Phone>(208) 464-2311</Phone>
+    <URL>www.skibaldmountain.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>13</Id>
+    <Name>Heavenly Mountain Resort</Name>
+    <Address>3860 Saddle Rd,.</Address>
+    <City>Lake Tahoe</City>
+    <State>CA</State>
+    <Zip>96150</Zip>
+    <Phone>(775) 586-7000</Phone>
+    <URL>www.skiheavenly.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>14</Id>
+    <Name>Deer Valley Resort</Name>
+    <Address>2250 Deer Valley Dr S</Address>
+    <City>Park City</City>
+    <State>UT</State>
+    <Zip>84060</Zip>
+    <Phone>435-649-1000</Phone>
+    <URL>www.deervalley.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>15</Id>
+    <Name>Mammoth Mountain</Name>
+    <Address>10001 Minaret Road</Address>
+    <City>Mammoth Lakes</City>
+    <State>CA</State>
+    <Zip>93546 </Zip>
+    <Phone>800-626-6684</Phone>
+    <URL>www.mammothmountain.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>16</Id>
+    <Name>Solitude Mountain Resort</Name>
+    <Address>12000 Big Cottonwood Canyon Rd</Address>
+    <City>Solitude</City>
+    <State>UT</State>
+    <Zip>84121</Zip>
+    <Phone>801-658-9266</Phone>
+    <URL>www.solitudemountain.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>18</Id>
+    <Name>Bear Valley</Name>
+    <Address>2280 state Rte 207</Address>
+    <City>Bear Valley</City>
+    <State>CA</State>
+    <Zip>95223</Zip>
+    <Phone>(209) 753-2301</Phone>
+    <URL>www.bearvalley.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>19</Id>
+    <Name>Beaver Creek Resort</Name>
+    <Address>210 Beaver Creek Plaza</Address>
+    <City>Beaver Creek</City>
+    <State>CO</State>
+    <Zip>81620</Zip>
+    <Phone>(970) 754-4636</Phone>
+    <URL>www.beavercreek.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>20</Id>
+    <Name>Vail Mountain</Name>
+    <Address>Vail Dr.</Address>
+    <City>Vail</City>
+    <State>CO</State>
+    <Zip>81657</Zip>
+    <Phone>(970) 754-8245</Phone>
+    <URL>www.vail.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>21</Id>
+    <Name>Big Sky</Name>
+    <Address>Big Sky Resort Road</Address>
+    <City>Big Sky</City>
+    <State>MT</State>
+    <Zip>59716</Zip>
+    <Phone> (800) 548-4486</Phone>
+    <URL>bigskyresort.com</URL>
+  </SkiResort>
+  <SkiResort>
+    <Id>7</Id>
+    <Name>Alpine Meadows</Name>
+    <Address>1960 Squaw Valley Rd</Address>
+    <City>Olympic Valley</City>
+    <State>CA</State>
+    <Zip>96146</Zip>
+    <Phone>800-403-0206</Phone>
+    <URL>squawalpine.com</URL>
+  </SkiResort>
+</SkiResorts>

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<NorthAmericasSkiResorts.Models.SkiResort>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    var pagedList = (IPagedList)Model;
+}
+
+<h2>Ski Resorts</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="container">
+        <div id="Filter Search" class="form-horizontal">
+            <div class="form-group">
+                @Html.Label("Search by name", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.TextBox("searchCriteria", null, new { @class = "form-control" })
+            </div>
+
+
+            <div class="form-group">
+                @Html.Label("Filter by City", htmlAttributes: new{@class="control-label col-md-2"})
+                @Html.DropDownList("cityFilter", new SelectList(@ViewBag.Cities), "All Cities", new {  @class="form-control"})
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Find a Ski Resort" class="btn col-md-3 col-md-offset-3" />
+                <input type="button" value="Reset Ski Resort List" onclick="location.href='@Url.Action("Index", "SkiResort")'" class="btn col-md-3 col-md-offset-3" />
+            </div>
+        </div>
+    </div>
+}
+
+    <div class="form-group">
+        <input type="submit" value="Create New" onclick="location.href='@Url.Action("Create","SkiResort")'" class="btn" />
+     </div>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model.Name).ToString(), "Index", new { sortOrder = "Name" })
+                </th>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model.City).ToString(), "Index", new { sortOrder = "City" })
+                </th>
+                <th>
+                    @Html.ActionLink(@Html.DisplayNameFor(model => model.State).ToString(), "Index", new { sortOrder = "State" })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.URL)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.URL)
+                </td>
+                <td>
+                    <input type="button" value="Edit" class="btn btn-default" onclick="location.href='@Url.Action("Edit", "SkiResort", new { id = item.Id })'" />
+                    <input type="button" value="Details" class="btn btn-default" onclick="location.href='@Url.Action("Details", "SkiResort", new { id = item.Id })'"/>
+                    <input type="button" value="Delete" class="btn btn-default" onclick="location.href='@Url.Action("Delete", "SkiResort", new { id = item.Id })'" />
+                </td>
+            </tr>
+    }
+
+        </table>
+
+Page @(pagedList.PageCount < pagedList.PageNumber ? 0 : pagedList.PageNumber) of @pagedList.PageCount
+@Html.PagedListPager(pagedList, page => Url.Action("index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter}))
