@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using NorthAmericasSkiResorts.Models;
+using NASR.Models;
 
-namespace NorthAmericasSkiResorts
+namespace NASR
 {
     public class EmailService : IIdentityMessageService
     {

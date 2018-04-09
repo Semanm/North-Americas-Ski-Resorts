@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace NorthAmericasSkiResorts.Models
+namespace NASR.Models
 {
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -16,12 +16,15 @@ namespace NorthAmericasSkiResorts.Models
             // Add custom user claims here
             return userIdentity;
         }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("nasr-remote", throwIfV1Schema: false)
         {
         }
 
@@ -29,5 +32,8 @@ namespace NorthAmericasSkiResorts.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<SkiResort> SkiResorts { get; set; }
+        public DbSet<Review> Reviews { set; get; }
     }
 }

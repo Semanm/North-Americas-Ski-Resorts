@@ -1,0 +1,24 @@
+﻿@model IEnumerable<NASR.Models.Review>
+
+@{
+    ViewBag.Title = "ListOfReviewsBySkiResort";
+    var SkiResort = ViewBag.SkiResort;
+}
+
+<h2>Review for @SkiResort.Name</h2>
+
+<table>
+    @foreach (var review in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => review.Content)
+                @Html.DisplayFor(modelItem => review.NumberOfStars)
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Add a Review", "UserCreate", "Reviews", new { skiResortId = SkiResort.Id }, null)
+<br />
+@Html.ActionLink("Return to Ski Resorts list", "ListSkiResorts", "SkiResorts")

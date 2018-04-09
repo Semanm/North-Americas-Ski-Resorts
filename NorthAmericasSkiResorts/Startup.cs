@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(NorthAmericasSkiResorts.Startup))]
-namespace NorthAmericasSkiResorts
+[assembly: OwinStartupAttribute(typeof(NASR.Startup))]
+namespace NASR
 {
     public partial class Startup
     {

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace NorthAmericasSkiResorts
+namespace NASR
 {
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -16,7 +16,6 @@ namespace NorthAmericasSkiResorts
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Application["dataFilePath"] = HttpContext.Current.Server.MapPath("~/App_Data/SkiResortsXmlData.xml");
         }
     }
 }

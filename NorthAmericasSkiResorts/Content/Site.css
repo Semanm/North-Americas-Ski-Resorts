@@ -22,20 +22,3 @@ select,
 textarea {
     max-width: 280px;
 }
-li {
-    padding: 5px;
-    margin: 0 1px;
-    font-size: 20px;
-    border: 1px solid #333;
-}
-    li:hover {
-        background: #18BC9C;
-        color:#fff;
-    }
-    li > a:hover {
-        background: #18BC9C;
-        color: #fff;
-    }
-    a{
-        color:#333;
-    }

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<NASR.Models.SkiResort>
+
+@{
+    ViewBag.Title = "ListSkiResorts";
+}
+
+<h2>Ski Resorts in North America</h2>
+
+@{Html.BeginForm("Search", "SkiResorts", FormMethod.Get);}
+<input type="text" name="q" value="" />
+<input type="submit" value="Search" />
+@{Html.EndForm();}
+
+&nbsp;
+
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "Details", new { id = item.Id }) <br />
+                @Html.DisplayFor(modelItem => item.City) <br />
+                @Html.DisplayFor(modelItem => item.Address) <br />
+                @Html.ActionLink("Reviews", "ListOfReviewsBySkiResort", "Reviews", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Return to Ski Resorts list", "SkiResorts", "SkiResorts")

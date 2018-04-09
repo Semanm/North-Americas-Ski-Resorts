@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using NorthAmericasSkiResorts.Models;
+using NASR.Models;
 
-namespace NorthAmericasSkiResorts.Controllers
+namespace NASR.Controllers
 {
     [Authorize]
     public class ManageController : Controller

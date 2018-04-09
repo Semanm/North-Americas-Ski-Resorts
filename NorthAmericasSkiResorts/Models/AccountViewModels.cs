@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace NorthAmericasSkiResorts.Models
+namespace NASR.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -79,6 +79,18 @@ namespace NorthAmericasSkiResorts.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Range(1,120, ErrorMessage = "Age must be between 1-120")]
+        public int Age { get; set; }
     }
 
     public class ResetPasswordViewModel
@@ -108,5 +120,32 @@ namespace NorthAmericasSkiResorts.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
+    }
+    public class EditUsersViewModel
+    {
+        public EditUsersViewModel() { }
+
+        public EditUsersViewModel(ApplicationUser User)
+        {
+            this.UserName = User.UserName;
+            this.FirstName = User.FirstName;
+            this.LastName = User.LastName;
+            this.Email = User.Email;
+        }
+
+        [Key]
+        [Required]
+        [Display(Name ="User Name")]
+        public string UserName { get; set; }
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+        [Required]
+        [Display(Name = "Email Address")]
+        public string Email { get; set; }
+
     }
 }
