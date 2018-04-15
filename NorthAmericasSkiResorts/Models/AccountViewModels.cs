@@ -148,4 +148,43 @@ namespace NASR.Models
         public string Email { get; set; }
 
     }
+    public class CreateUsersViewModel
+    {
+        public CreateUsersViewModel() { }
+
+        public CreateUsersViewModel(ApplicationUser User)
+        {
+            this.UserName = User.UserName;
+            this.FirstName = User.FirstName;
+            this.LastName = User.LastName;
+            this.Email = User.Email;
+        }
+
+        [Key]
+        [Required]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+        [Required]
+        [Display(Name = "Email Address")]
+        public string Email { get; set; }
+
+    }
+
+    public class RoleViewModel
+    {
+        public RoleViewModel() {}
+
+        [Key]
+        public int Id { get; set; }
+
+        [Required]
+        [Display(Name = "Role Name")]
+        public string Name { get; set; }
+    }
 }
