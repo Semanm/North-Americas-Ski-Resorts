@@ -63,9 +63,9 @@ namespace NASR.Controllers
             {
                 skiResortReviewViewModels.Add(new SkiResortReviewViewModel
                 {
-                    SkiResortId = resortReviews.Id,
-                    Id = resortReviews.SkiResortId,
-                    SkiResortName = SkiResortNames[resortReviews.Id],
+                    SkiResortId = resortReviews.SkiResortId,
+                    Id = resortReviews.Id,
+                    SkiResortName = SkiResortNames[resortReviews.SkiResortId],
                     Content = resortReviews.Content,
                     NumberOfStars = resortReviews.NumberOfStars
                 });
@@ -82,11 +82,12 @@ namespace NASR.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Review review = db.Reviews.Find(id);
+            SkiResortReviewViewModel skiResortReviewViewModel = BuildskiResortReviewViewModel(review);
             if (review == null)
             {
                 return HttpNotFound();
             }
-            return View(review);
+            return View(skiResortReviewViewModel);
         }
 
         // GET: user create brewery review
