@@ -4,7 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity.EntityFramework;
+using NASR.CustomAttributes;
 using NASR.Models;
 
 namespace NASR.Controllers
@@ -15,11 +17,12 @@ namespace NASR.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: IdentityRole
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.Roles.ToList());
         }
-
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Details(string id)
         {
             if(id == null)
@@ -33,7 +36,7 @@ namespace NASR.Controllers
             }
             return View(role);
         }
-
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -41,6 +44,7 @@ namespace NASR.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id, Name")] IdentityRole role)
         {
             if (ModelState.IsValid)
@@ -51,7 +55,7 @@ namespace NASR.Controllers
             }
             return View(role);
         }
-
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Edit(string id)
         {
             if(id == null)
@@ -67,6 +71,7 @@ namespace NASR.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,Name")] IdentityRole role)
         {
             if (ModelState.IsValid)
@@ -77,7 +82,7 @@ namespace NASR.Controllers
             }
             return View(role);
         }
-
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Delete(string id)
         {
             if(id == null)
@@ -94,6 +99,7 @@ namespace NASR.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult DeleteConfirmed(string id)
         {
             IdentityRole IdentityRoleTemp = db.Roles.Find(id);

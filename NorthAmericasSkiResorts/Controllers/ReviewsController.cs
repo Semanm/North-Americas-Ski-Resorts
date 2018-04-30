@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using NASR.CustomAttributes;
 using NASR.Models;
 
 namespace NASR.Controllers
@@ -90,14 +92,15 @@ namespace NASR.Controllers
             return View(skiResortReviewViewModel);
         }
 
-        // GET: user create brewery review
+        // GET: user create review
         public ActionResult UserCreate()
         {
             return View();
         }
 
-        // POST: user create brewery review
+        // POST: user create review
         [HttpPost]
+        [AuthorizeOrRedirectAttribute(Roles = "User")]
         [ValidateAntiForgeryToken]
         public ActionResult UserCreate([Bind(Include = "Id,Content,NumberOfStars,SkiResortId")] Review skiResortReview)
         {
@@ -112,6 +115,7 @@ namespace NASR.Controllers
         }
 
         // GET: Reviews/Create
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Create()
         {
             var skiResortList = db.SkiResorts.Select(s => s);
@@ -124,6 +128,7 @@ namespace NASR.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,Content,NumberOfStars,SkiResortId")] Review review)
         {
             if (ModelState.IsValid)
@@ -137,6 +142,7 @@ namespace NASR.Controllers
         }
 
         // GET: Reviews/Edit/5
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -157,6 +163,7 @@ namespace NASR.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,Content,NumberOfStars,SkiResortId")] Review review)
         {
             SkiResortReviewViewModel skiResortReviewViewModel = BuildskiResortReviewViewModel(review);
@@ -170,6 +177,7 @@ namespace NASR.Controllers
         }
 
         // GET: Reviews/Delete/5
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -188,6 +196,7 @@ namespace NASR.Controllers
         // POST: Reviews/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Review review = db.Reviews.Find(id);

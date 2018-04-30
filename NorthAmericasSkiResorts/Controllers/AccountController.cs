@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using NASR.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using NASR.CustomAttributes;
 
 namespace NASR.Controllers
 {
@@ -22,6 +23,7 @@ namespace NASR.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Index()
         {
             var db = new ApplicationDbContext();
@@ -37,6 +39,7 @@ namespace NASR.Controllers
             return View(model);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Edit(string userName = null)
         {
             if(userName == null)
@@ -57,16 +60,26 @@ namespace NASR.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserName, FirstName, LastName, Email")] EditUsersViewModel userModel)
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
+        public ActionResult Edit([Bind(Include = "UserName, FirstName, LastName, Email, Password, ConfirmPassword")] EditUsersViewModel userModel)
         {
             if (ModelState.IsValid)
             {
                 var db = new ApplicationDbContext();
                 var newUser = db.Users.First(u => u.UserName == userModel.UserName);
 
-                newUser.FirstName = userModel.FirstName;
-                newUser.LastName = userModel.LastName;
-                newUser.Email = userModel.Email;
+                if(newUser != null)
+                {
+                    newUser.FirstName = userModel.FirstName;
+                    newUser.LastName = userModel.LastName;
+                    newUser.Email = userModel.Email;
+                    if(userModel.Password != null)
+                    {
+                        PasswordHasher ph = new PasswordHasher();
+                        newUser.PasswordHash = ph.HashPassword(userModel.Password);
+                    }
+                }
+
 
                 db.Entry(newUser).State = EntityState.Modified;
                 db.SaveChanges();
@@ -76,6 +89,7 @@ namespace NASR.Controllers
             return View(userModel);
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Delete(string userName = null)
         {
             var db = new ApplicationDbContext();
@@ -92,6 +106,7 @@ namespace NASR.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost, ActionName("Delete")]
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult DeleteConfirmed(string userName)
         {
             var db = new ApplicationDbContext();
@@ -101,6 +116,7 @@ namespace NASR.Controllers
             return RedirectToAction("Index");
         }
 
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Details(string userName = null)
         {
             var db = new ApplicationDbContext();
@@ -115,37 +131,64 @@ namespace NASR.Controllers
             return View(model);
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Create([Bind(Include ="UserName, FirstName, LastName, Email")] CreateUsersViewModel user)
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
+        public async Task<ActionResult> Create(RegisterViewModel model)
         {
             var db = new ApplicationDbContext();
             if (ModelState.IsValid)
             {
-                var newUser = new ApplicationUser();
-                newUser.UserName = user.UserName;
-                newUser.FirstName = user.FirstName;
-                newUser.LastName = user.LastName;
-                newUser.Email = user.Email;
+                var newUser = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email
+                };
+                var result = await UserManager.CreateAsync(newUser, model.Password);
+                if (result.Succeeded)
+                {
+                    UserManager.AddToRole(newUser.Id, "User");
+                    return RedirectToAction("Index", "Account");
+                }
 
-                db.Users.Add(newUser);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                AddErrors(result);
 
             }
 
-            return View(user);
+            return View(model);
         }
 
-
+        [HttpPost]
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
+        public async Task<ActionResult> Create([Bind(Include ="UserName, FirstName, LastName, Email, Password, ConfirmPassword")] CreateUsersViewModel userModel)
+        {
+            var db = new ApplicationDbContext();
+            if (ModelState.IsValid)
+            {
+                var newUser = new ApplicationUser()
+                {
+                    UserName = userModel.UserName,
+                    FirstName = userModel.FirstName,
+                    LastName = userModel.LastName,
+                    Email = userModel.Email
+                };
+                var result = await UserManager.CreateAsync(newUser);
+                if (result.Succeeded)
+                {
+                    PasswordHasher ph = new PasswordHasher();
+                    newUser.PasswordHash = ph.HashPassword(userModel.Password);
+                    UserManager.AddToRole(newUser.Id, "Guest");
+                    return RedirectToAction("Index", "Account");
+                }
+                AddErrors(result);
+            }
+            return View(userModel);
+        }
 
         public AccountController()
         {
         }
+
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
@@ -549,7 +592,7 @@ namespace NASR.Controllers
         }
 
         #region USER ROLE MANAGEMENT
-
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult ViewUsersRoles(string userName = null)
         {
             if (!string.IsNullOrWhiteSpace(userName))
@@ -579,7 +622,7 @@ namespace NASR.Controllers
             }
             return View();
         }
-
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult AddRoleToUser(string userName = null)
         {
             List<string> roles;
@@ -599,6 +642,7 @@ namespace NASR.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult AddRoleToUser(string roleName, string userName)
         {
             List<string> roles;
@@ -649,7 +693,7 @@ namespace NASR.Controllers
             }
         }
 
-
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult DeleteRoleForUser(string userName = null, string roleName = null)
         {
             if ((!string.IsNullOrWhiteSpace(userName)) || (!string.IsNullOrWhiteSpace(roleName)))

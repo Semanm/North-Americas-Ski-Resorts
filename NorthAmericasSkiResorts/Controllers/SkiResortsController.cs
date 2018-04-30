@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using NASR.CustomAttributes;
 using NASR.Models;
 
 namespace NASR.Controllers
@@ -50,6 +51,7 @@ namespace NASR.Controllers
         }
 
         // GET: SkiResorts/Create
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -60,6 +62,7 @@ namespace NASR.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,Name,City,State,Address,Zip,SnowFall,NumberOfRuns,NumberOfLifts,Elevation")] SkiResort skiResort)
         {
             if (ModelState.IsValid)
@@ -73,6 +76,7 @@ namespace NASR.Controllers
         }
 
         // GET: SkiResorts/Edit/5
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -92,6 +96,7 @@ namespace NASR.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,Name,City,State,Address,Zip,SnowFall,NumberOfRuns,NumberOfLifts,Elevation")] SkiResort skiResort)
         {
             if (ModelState.IsValid)
@@ -104,6 +109,7 @@ namespace NASR.Controllers
         }
 
         // GET: SkiResorts/Delete/5
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -121,6 +127,7 @@ namespace NASR.Controllers
         // POST: SkiResorts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [AuthorizeOrRedirectAttribute(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             SkiResort skiResort = db.SkiResorts.Find(id);
