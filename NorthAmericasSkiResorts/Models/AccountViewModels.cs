@@ -131,12 +131,23 @@ namespace NASR.Models
             this.FirstName = User.FirstName;
             this.LastName = User.LastName;
             this.Email = User.Email;
+            this.Password = User.PasswordHash;
         }
 
         [Key]
         [Required]
         [Display(Name ="User Name")]
         public string UserName { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        [StringLength(100, ErrorMessage = "The (0) Must be at least {2} characters long.", MinimumLength = 6)]
+        public string Password { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password")]
+        [StringLength(100, ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -158,12 +169,23 @@ namespace NASR.Models
             this.FirstName = User.FirstName;
             this.LastName = User.LastName;
             this.Email = User.Email;
+            this.Password = User.PasswordHash;
         }
 
         [Key]
         [Required]
         [Display(Name = "User Name")]
         public string UserName { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        [StringLength(100, ErrorMessage = "The (0) Must be at least {2} characters long.", MinimumLength = 6)]
+        public string Password { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password")]
+        [StringLength(100, ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -173,7 +195,6 @@ namespace NASR.Models
         [Required]
         [Display(Name = "Email Address")]
         public string Email { get; set; }
-
     }
 
     public class RoleViewModel
