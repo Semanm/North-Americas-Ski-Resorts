@@ -1,12 +1,25 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿
+* {
+    box-sizing: border-box;
 }
-
+.no-padding {
+    padding:0px;
+}
+.padding-bottom-20 {
+    padding-bottom:20px;
+}
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-top:30px;
+    padding-bottom:120px;
+    color:#555;
+    position:relative;
+    z-index:10;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -21,4 +34,202 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+dt {
+    padding: 0 0 20px;
+}
+dl.dl-horizontal {
+    background: #fff;
+    padding: 20px;
+    box-shadow:#999 0px 2px 6px;
+}
+th {
+    color: #008cba;
+}
+img.stars {
+    height:50px;
+}
+.review-container {
+    padding: 20px;
+    background: #f2f2f2;
+    margin-bottom: 20px;
+    box-shadow: #999 0px 1px 8px;
+}
+.label-reviews {
+    display:inline-block;
+    color:#999;
+}
+
+.reviews-container {
+    padding:20px;
+    background:#fff;
+    box-shadow:#999 0px 2px 6px;
+    margin-bottom:20px;
+}
+body {
+    background: #c4c4c4;
+    font-size: 16px;
+    padding-top: 50px;
+    overflow-x:hidden;
+    padding-bottom: 20px;
+}
+h2, .h2 {
+    font-size: 32px;
+    color: #555;
+    font-weight:400;
+}
+
+/*      Snow!      */
+.snow {
+    background: white;
+    display: block;
+    position: absolute;
+    top: -50px;
+    animation: snowfall 8s linear;
+}
+
+.front-page-style {
+    margin-left: -15px;
+}
+
+@media screen and (max-width:767px) {
+    .front-page-style {
+        margin-left: 0px;
+    }
+}
+
+.feature-wrapper {
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: #333 0px 2px 6px;
+    margin-bottom: 20px;
+}
+
+    .feature-wrapper img {
+        width: 100%;
+        height: auto;
+    }
+
+    .feature-wrapper h2 {
+        margin: 0px;
+        padding: 0 0 10px 0px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .feature-wrapper a {
+        padding: 10px 30px;
+        background-color: #008cba;
+        color: #fff;
+        display: inline-block;
+        width: 100%;
+        margin: 10px 0px 0px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+        .feature-wrapper a:hover {
+            background-color: #006687;
+        }
+
+@keyframes snowfall {
+    0% {
+        top: -50px;
+    }
+
+    25% {
+        margin-left: 0px;
+    }
+
+    50% {
+        margin-left: 0px;
+    }
+
+    75% {
+        margin-left: 0px;
+    }
+
+    100% {
+        top: 800px;
+        opacity: 0;
+        margin-left: 0px;
+    }
+}
+
+.form-container {
+    padding:20px;
+    max-width:600px;
+    background-color:#f2f2f2;
+    box-shadow:#333 0px 2px 6px;
+}
+
+td {
+    background: #f3f3f3;
+    color: #555;
+    border: 2px solid #ccc;
+}
+
+    td:hover {
+        background: #f9f9f9;
+    }
+
+th {
+    background: #fff;
+    border: #ccc 2px solid;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 21px;
+    box-shadow: #333 0px 2px 6px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    display:block;
+    margin-top:300px;
+}
+footer img {
+    height:250px;
+    width:100%;
+    min-width:1300px;
+}
+footer p {
+    position:relative;
+    top:250px;
+    margin-left:20px;
+}
+.btn-default {
+    padding: 10px 30px;
+    display:inline-block;
+    background-color: #008cba;
+    color:#f2f2f2;
+}
+    .btn-default:hover {
+        color: #f2f2f2;
+        background-color: #006687;
+        border-color: #006687;
+    }
+
+.btn-create a {
+    padding: 10px 30px;
+    display: inline-block;
+    background-color: #fff;
+    box-shadow: #333 0px 2px 6px;
+    opacity: .8;
+    color: #006687;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+    .btn-create a:hover {
+        color: #f2f2f2;
+        opacity:1;
+        background-color: #006687;
+        border-color: #006687;
+    }
+.btn-container {
+    display: inline-flex;
 }
