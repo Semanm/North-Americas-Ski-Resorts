@@ -5,20 +5,60 @@
     var SkiResort = ViewBag.SkiResort;
 }
 
-<h2>Review for @SkiResort.Name</h2>
+<h2>Reviews for @SkiResort.Name</h2>
 
-<table>
-    @foreach (var review in Model)
+<div class="container reviews-container col-sm-10 col-xs-12" >
+    <div class="row">
+        @if (Model.Count() != 0)
+        {
+            foreach (var review in Model)
+            {
+                var stars = review.NumberOfStars;
+                <div class="col-xs-12">
+                    <div class="review-container">
+                        <div>
+                            @Html.DisplayFor(modelItem => review.Content)
+                        </div>
+                        <div>
+                            @switch (stars)
+                            {
+                                case 1:
+                                    <img class="stars" src="~/Content/stars/Onestar.png" alt="One Star" />
+                                    break;
+                                case 2:
+                                    <img class="stars" src="~/Content/stars/Twostars.png" alt="Two Stars" />
+                                    break;
+                                case 3:
+                                    <img class="stars" src="~/Content/stars/Threestars.png" alt="Three Stars" />
+                                    break;
+                                case 4:
+                                    <img class="stars" src="~/Content/stars/Fourstars.png" alt="Four Stars" />
+                                    break;
+                                case 5:
+                                    <img class="stars" src="~/Content/stars/Fivestars.png" alt="Five Stars" />
+                                    break;
+
+                                default:
+                                    break;
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Be the first to write a review!</p>
+        }
+
+    </div>
+</div>
+
+<div class="btn-container">
+    @if (User.IsInRole("User"))
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => review.Content)
-                @Html.DisplayFor(modelItem => review.NumberOfStars)
-            </td>
-        </tr>
+    <p class="btn-create">@Html.ActionLink("Add a Review", "UserCreate", "Reviews", new { skiResortId = SkiResort.Id }, null)</p>
     }
-</table>
-
-@Html.ActionLink("Add a Review", "UserCreate", "Reviews", new { skiResortId = SkiResort.Id }, null)
-<br />
-@Html.ActionLink("Return to Ski Resorts list", "ListSkiResorts", "SkiResorts")
+    <p class="btn-create">@Html.ActionLink("Return to Ski Resorts list", "index", "SkiResorts")</p>
+</div>

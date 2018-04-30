@@ -3,11 +3,12 @@
     ViewBag.Title = "ApplicationAdministration";
 }
 
-<h2>Application Administration</h2>
+<h2>Admin Home</h2>
 
-<ul>
-    <li>@Html.ActionLink("Manage Ski Resorts", "Index", "SkiResorts")</li>
-    <li>@Html.ActionLink("Manage Ski Resort Reviews", "Index", "Reviews")</li>
-    <li>@Html.ActionLink("Manage Users", "Index", "Account")</li>
-</ul>
+<div class="container">
+    <p class="btn-create">@Html.ActionLink("Manage Ski Resorts", "Index", "SkiResorts")</p>
+    <p class="btn-create">@Html.ActionLink("Manage Ski Resort Reviews", "Index", "Reviews")</p>
+    <p class="btn-create">@Html.ActionLink("Manage Users", "Index", "Account")</p>
+    <p class="btn-create">@Html.ActionLink("Manage Users Roles", "Index", "IdentityRole")</p>
+</div>
 

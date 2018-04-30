@@ -28,16 +28,42 @@
             </div>
         </div>
     </div>
+
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Michael Seman | Northwestern Michigan College</p>
-        </footer>
+        <div class="snow"></div>
+
     </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Michael Seman | Northwestern Michigan College</p>
+        <img src="~/Content/snowground-trees.png" alt="" />
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquerykeyframes/0.0.9/jquery.keyframes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquerykeyframes/0.0.9/jquery.keyframes.min.js"></script>
+    <script>
+            $(function () {
+
+                setInterval(function () {
+                    var left = (Math.random() * 100) + 1;
+                    var size = (Math.random() * 4) + 1;
+                    var animationEnd = 'oanimationend animationend webkitAnimationEnd';
+                    $('<span class="snow"></span>')
+                        .css({ left: left + '%', width: size + 'px', height: size + 'px' })
+                        .appendTo('body')
+                        .on(animationEnd, function () {
+                            $(this).remove();
+                        });
+                }, 100);
+
+            });
+        </script>
+
+    <script>$(".flippable").click(function () {
+            $(this).toggleClass("flipme");
+        });</script>
 </body>
 </html>
